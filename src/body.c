@@ -12,27 +12,21 @@ static char **init_table(int width, int height)
     char **table = malloc(width * sizeof (char *));
     for (int i = 0; i < width; i++)
         table[i] = malloc(height * sizeof (char));
+    for (int i = 0; i < width; i++)
+        for (int j = 0; j < height; j++)
+            table[i][j] = 0;
     return table;
 }
 
 static int alive_neighbours(char **tab, int i, int j, int width, int height)
 {
-    int count = 0;
-    for (int x = i - 1; x < i + 2; x++)
-    {
-        for (int y = j - 1; y < j + 2; y++)
-        {
-            if (x < 0 || y < 0 || x > width - 1 || y > height - 1 ||
-               ((x == i) && (y == j)))
-                continue;
-            else
-            {
-                if (tab[x][y] == 1)
-                    count++;
-            }
-        }
-    }
-    return count;
+    int n = 0;
+    for (int k = i - 1; k < i + 2; k++)
+        if (k >= 0 && k < width)
+            for (int l = j - 1; l < j + 2; l++)
+                if (l >= 0 && l < height && k != i && l != j && tab[k][l])
+                    n++;
+    return n;
 }
 
 char **update(char **table, int width, int height)
@@ -45,8 +39,8 @@ char **update(char **table, int width, int height)
             int nb = alive_neighbours(table, i, j, width, height);
             if (table[i][j] == 0 && nb == 3)
                 ret[i][j] = 1;
-            else if (table[i][j] == 1 && (nb != 2 && nb != 3))
-                ret[i][j] = 0;
+            else if (table[i][j] == 1 && (nb == 2 || nb == 3))
+                ret[i][j] = 1;
         }
     }
     destroy_table(table, width);

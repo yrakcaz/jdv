@@ -1,7 +1,7 @@
 EXE=jdv
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror -std=c99 -pedantic
-SRC=src/body.c src/game.c src/main.c
+SRC=src/body.c src/game.c src/map.c src/main.c
 OBJ=$(SRC:.c=.o)
 TAR=yrakcaz-jdv
 DIR=/usr/bin

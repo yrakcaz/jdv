@@ -3,9 +3,10 @@
 #define CLEAR_SCREEN_ANSI "\033[1;1H\033[2J"
 #define TRESHOLD 30
 
-/*static*/ void clear_screen()
+static void clear_screen()
 {
-    write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
+    //write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
+    write(STDOUT_FILENO, "\n\n", 2);
 }
 
 static char **init_table(int width, int height)
@@ -22,6 +23,19 @@ static char **init_table(int width, int height)
 void run(int width, int height)
 {
     char **table = init_table(width, height);
+    while (1)
+    {
+        clear_screen();
+        draw(table, width, height);
+        table = update(table, width, height);
+        sleep(1);
+    }
+}
+
+void run_with_mapping(char *map)
+{
+    size_t width, height;
+    char **table = get_mapping(map, &width, &height);
     while (1)
     {
         clear_screen();
