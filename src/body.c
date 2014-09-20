@@ -24,7 +24,7 @@ static int alive_neighbours(char **tab, int i, int j, int width, int height)
     for (int k = i - 1; k < i + 2; k++)
         if (k >= 0 && k < width)
             for (int l = j - 1; l < j + 2; l++)
-                if (l >= 0 && l < height && k != i && l != j && tab[k][l])
+                if (l >= 0 && l < height && (k != i || l != j) && tab[k][l])
                     n++;
     return n;
 }

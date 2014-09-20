@@ -1,12 +1,11 @@
 #include "../include/game.h"
 
 #define CLEAR_SCREEN_ANSI "\033[1;1H\033[2J"
-#define TRESHOLD 30
+#define TRESHOLD 40
 
 static void clear_screen()
 {
-    //write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
-    write(STDOUT_FILENO, "\n\n", 2);
+    write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
 }
 
 static char **init_table(int width, int height)
