@@ -29,7 +29,7 @@ install:
 ifeq ($(DIR),/usr/bin)
 	sudo cp jdv $(DIR)
 else
-	cp dem $(DIR)
+	cp jd $(DIR)
 endif
 
 .PHONY: all clean distclean export
