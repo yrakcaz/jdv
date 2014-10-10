@@ -27,7 +27,7 @@ void run(int width, int height)
         clear_screen();
         draw(table, width, height);
         table = update(table, width, height);
-        sleep(1);
+        usleep(300000);
     }
 }
 
@@ -40,6 +40,6 @@ void run_with_mapping(char *map)
         clear_screen();
         draw(table, width, height);
         table = update(table, width, height);
-        sleep(1);
+        usleep(300000);
     }
 }
