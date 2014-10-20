@@ -49,6 +49,7 @@ char **get_mapping(const char *path, size_t *width, size_t *height)
     read(fd, buf, st.st_size);
     if (check_map(buf, (size_t *)&(st.st_size), width, height) == -1)
     {
+        free(buf);
         printf("jdv: %s: the map is incorrect, it has to contain only points and stars, and every lines must have same size.\n", path);
         exit(1);
     }
@@ -70,6 +71,7 @@ char **get_mapping(const char *path, size_t *width, size_t *height)
             i++;
         }
     }
+    free(buf);
     return ret;
 }
 
