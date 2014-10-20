@@ -47,6 +47,7 @@ char **get_mapping(const char *path, size_t *width, size_t *height)
     fstat(fd, &st);
     char *buf = malloc(st.st_size * sizeof (char));
     read(fd, buf, st.st_size);
+    close(fd);
     if (check_map(buf, (size_t *)&(st.st_size), width, height) == -1)
     {
         free(buf);
