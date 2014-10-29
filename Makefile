@@ -19,8 +19,16 @@ $(EXE): $(OBJ)
 clean:
 	rm -f $(OBJ) $(EXE) $(TAR).tar.bz2
 
-distclean: clean
+cleandoc:
+	rm -rf doc/html doc/latex doc/refman.pdf
+
+distclean: clean cleandoc
 	rm -f makefile.rules
+
+doc:
+	doxygen doc/Doxyfile
+	$(MAKE) -C doc/latex
+	mv doc/latex/refman.pdf doc/
 
 export:
 	git archive HEAD --prefix=$(TAR)/ | bzip2 > $(TAR).tar.bz2
@@ -32,4 +40,4 @@ else
 	cp jd $(DIR)
 endif
 
-.PHONY: all clean distclean export
+.PHONY: all clean distclean export doc
