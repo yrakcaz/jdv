@@ -37,7 +37,7 @@ install:
 ifeq ($(DIR),/usr/bin)
 	sudo cp jdv $(DIR)
 else
-	cp jd $(DIR)
+	cp jdv $(DIR)
 endif
 
 .PHONY: all clean distclean export doc

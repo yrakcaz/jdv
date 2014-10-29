@@ -2,3 +2,10 @@ jdv
 ===
 
 A little game of life, just for fun^^
+
+Generate binary:
+    ./configure --prefix=<INSTALL DIR> && make
+
+Install:
+    make install
+    (if --prefix wasn't set in configure, install dir will be /usr/bin)
